@@ -13,3 +13,7 @@ Thumbs.db
 
 #VE
 venv/
+
+#CSV
+cleaned_data.csv
+fixtures/messy.csv
