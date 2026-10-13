@@ -61,8 +61,12 @@ def main():
         sys.exit(1)
 
     # read validation settings from the config
-    required_columns = config["validation"]["required_columns"]
-    numeric_columns = config["validation"]["numeric_columns"]
+    try:
+        required_columns = config["validation"]["required_columns"]
+        numeric_columns = config["validation"]["numeric_columns"]
+    except (KeyError, TypeError):
+        logger.error("Config file is missing validation settings: %s", args.config)
+        sys.exit(1)
 
     # validate the data
     rows_loaded = len(df)

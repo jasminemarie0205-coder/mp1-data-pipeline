@@ -11,6 +11,10 @@ def validate_dataframe(df, required_columns, numeric_columns):
     required_columns: a list of column names that must exist.
     numeric_columns: a list of column names whose values should be numeric.
     """
+    if not isinstance(df, pd.DataFrame):
+        logger.error("Input data must be tabular (CSV), got %s", type(df).__name__)
+        raise ValueError("Input data must be tabular (CSV)")
+    
     df = df.copy()
     before = len(df)
 
